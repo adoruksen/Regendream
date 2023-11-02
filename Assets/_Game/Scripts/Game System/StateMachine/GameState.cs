@@ -1,13 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using General.State;
-using UnityEngine;
+using Managers;
 
 namespace GameSystem.States
 {
     public class GameState : State
     {
-        
+        protected override void OnStateEnter(IHaveState controller)
+        {
+            var player = CharacterManager.Instance.CurrentPlayer;
+            player.StateController.SetState(player.StateController.MoveState);
+        }
     }
 }
 

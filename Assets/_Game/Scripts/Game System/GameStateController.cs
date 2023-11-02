@@ -1,7 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using GameSystem.States;
 using General.State;
+using Managers;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace GameSystem
@@ -13,15 +14,16 @@ namespace GameSystem
         public GameState GameState = new();
         public FailGameState FailGameState = new();
         public WinGameState WinGameState = new();
-        public State CurrentState { get; private set; }
+        [ShowInInspector] public State CurrentState { get; private set; }
 
         private void Awake()
         {
             _controller = GetComponent<GameController>();
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
+            yield return new WaitUntil(() => GameManager.Instance.isPlaying);
             SetState(GameState);
         }
 

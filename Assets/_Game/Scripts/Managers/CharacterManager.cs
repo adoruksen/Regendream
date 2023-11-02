@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using CharacterController = CharacterSystem.CharacterController;
 
@@ -6,7 +7,7 @@ namespace Managers
     public class CharacterManager : MonoBehaviour
     {
         public static CharacterManager Instance;
-        public CharacterController CurrentPlayer { get; private set; }
+        [ShowInInspector] public CharacterController CurrentPlayer { get; private set; }
 
         private void Awake()
         {
@@ -16,7 +17,6 @@ namespace Managers
         public void SetCurrentCharacter(CharacterController character)
         {
             CurrentPlayer = character;
-            Debug.Log(CurrentPlayer.gameObject.name);
         }
     }
 }

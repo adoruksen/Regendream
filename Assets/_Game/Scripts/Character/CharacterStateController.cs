@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using CharacterSystem.States;
 using General.State;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace CharacterSystem
@@ -15,7 +13,7 @@ namespace CharacterSystem
         public MoveState MoveState = new();
         public FailState FailState = new();
         public WinState WinState = new();
-        public State CurrentState { get; private set; }
+        [ShowInInspector] public State CurrentState { get; private set; }
 
         private void Awake()
         {

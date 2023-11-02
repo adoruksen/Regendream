@@ -1,4 +1,5 @@
 using General.State;
+using InputSystem;
 using UnityEngine;
 
 namespace CharacterSystem.States
@@ -13,7 +14,10 @@ namespace CharacterSystem.States
 
         public override void OnStateFixedUpdate(IHaveState controller)
         {
-            
+            var offset = InputManager.Module.NormalizedOffset;
+            var direction = new Vector3(offset.x, 0f, offset.y);
+            _controller.MovementController.Move(direction);
+            if (offset.sqrMagnitude > .001f) _controller.MovementController.Look(direction);
         }
     }
 }
